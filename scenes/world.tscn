@@ -45,6 +45,7 @@ board = NodePath("../Board")
 
 [node name="Dice" type="Node2D" parent="."]
 script = ExtResource("5_wvcd2")
+faces = 12
 
 [node name="Players" type="Node2D" parent="."]
 
