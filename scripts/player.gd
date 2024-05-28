@@ -5,7 +5,12 @@ class_name Pin
 @export var dice: Dice
 @export var navegator: Navegator
 
-var moves_left = 0
+
+var is_moving: bool = false
+var moves_left: int = 0:
+	set (value):
+		moves_left = set_moves_left(value)
+
 
 func _ready() -> void:
 	movement.movement_done.connect(movement_done)
@@ -13,12 +18,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
-		moves_left = roll_dice()
-		print("dice: ", moves_left)
-		do_movement()
+		if !is_moving:
+			moves_left = roll_dice()
+			print("dice: ", moves_left)
+			do_movement()
 
-func _input(event: InputEvent) -> void:
-	pass
+
+func set_moves_left(value: int):
+	is_moving = value > 0
+	return value
 
 
 func roll_dice() -> int:
@@ -26,7 +34,7 @@ func roll_dice() -> int:
 
 
 func do_movement():
-	if !moves_left:
+	if !is_moving:
 		return
 		
 	var next_movement = navegator.get_movement(self.global_position)
