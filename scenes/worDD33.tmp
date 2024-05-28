@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://1rwmfc527xt1"]
+
+[ext_resource type="Texture2D" uid="uid://kgf7xrdgl346" path="res://assets/board.png" id="1_7gjrn"]
+[ext_resource type="PackedScene" uid="uid://cwoheqkegnmau" path="res://scenes/player.tscn" id="2_ae8dh"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xf7m2"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ghkth"]
+resource_name = "floor"
+texture = ExtResource("1_7gjrn")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_xf7m2")
+0:0/0/custom_data_0 = "floor"
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bkuhp"]
+tile_size = Vector2i(32, 32)
+navigation_layer_0/layers = 2
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_ghkth")
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_bkuhp")
+format = 2
+layer_0/name = "floor"
+layer_0/tile_data = PackedInt32Array(131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 393217, 0, 0, 458753, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 458760, 0, 0, 393224, 0, 0, 327688, 0, 0, 262152, 0, 0, 196616, 0, 0, 131080, 0, 0, 131079, 0, 0, 131078, 0, 0, 131077, 0, 0, 131076, 0, 0, 131075, 0, 0, 131074, 0, 0)
+
+[node name="Player" parent="." node_paths=PackedStringArray("tile_map") instance=ExtResource("2_ae8dh")]
+tile_map = NodePath("../TileMap")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5f8ahumguwkr"]
+
+[ext_resource type="Script" path="res://scripts/Navegator.gd" id="1_erp4j"]
+
+[node name="Navegator" type="Node2D"]
+script = ExtResource("1_erp4j")

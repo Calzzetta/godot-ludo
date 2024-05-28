@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwoheqkegnmau"]
+
+[ext_resource type="Texture2D" uid="uid://f1rvawx4apuh" path="res://assets/pin-red.png" id="1_h1ica"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_jdimc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fym6j"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(49, 82)
+script = ExtResource("1_jdimc")
+
+[node name="Pin-red" type="Sprite2D" parent="."]
+texture = ExtResource("1_h1ica")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fym6j")
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="MarkerRight" type="Marker2D" parent="Markers"]
+position = Vector2(32, 0)
+
+[node name="MarkerLeft" type="Marker2D" parent="Markers"]
+position = Vector2(-32, 0)
+
+[node name="MarkerUp" type="Marker2D" parent="Markers"]
+position = Vector2(0, -33)
+
+[node name="MarkerDown" type="RayCast2D" parent="Markers"]
+target_position = Vector2(0, 31)

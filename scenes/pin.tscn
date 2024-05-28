@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwoheqkegnmau"]
+
+[ext_resource type="Texture2D" uid="uid://f1rvawx4apuh" path="res://assets/pin-red.png" id="1_h1ica"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_jdimc"]
+[ext_resource type="Script" path="res://scripts/Movement.gd" id="3_sg2iu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fym6j"]
+
+[node name="Pin" type="CharacterBody2D" node_paths=PackedStringArray("movement")]
+position = Vector2(49, 82)
+script = ExtResource("1_jdimc")
+movement = NodePath("Movement")
+
+[node name="Pin-red" type="Sprite2D" parent="."]
+position = Vector2(1, 2)
+texture = ExtResource("1_h1ica")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_fym6j")
+
+[node name="Movement" type="Node2D" parent="." node_paths=PackedStringArray("character_to_move")]
+script = ExtResource("3_sg2iu")
+character_to_move = NodePath("..")
